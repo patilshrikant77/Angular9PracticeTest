@@ -12,12 +12,14 @@ $users->userEmail =$data->userEmail;
 $users->userWebAddress  =$data->userWebAddress;
 $users->userCoveLetter =$data->userCoveLetter;
 $users->userWorking  =$data->userWorking;
-$users->userAttacment =($data->userAttacment->filename)?$data->userAttacment->filename:'';
+//echo json_encode($data->userAttacment);
+
+$users->userAttacment =($data->userAttacment && $data->userAttacment->filename)?$data->userAttacment->filename:'';
 
 $result= $users->readByEmail();
 $num=$result->rowCount();
 if($num ===0){
-    if($data->userAttacment->filename && $data->userAttacment->value){
+    if($data->userAttacment && $data->userAttacment->filename && $data->userAttacment->value){
          $userFile=file_put_contents($dir_to_save.$data->userAttacment->filename, base64_decode($data->userAttacment->value));
         if(!$userFile){
              echo json_encode(array('message'=>'Unable to upload file please try again letter','type'=>true));
