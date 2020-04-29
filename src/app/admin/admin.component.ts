@@ -12,6 +12,7 @@ import { UserResponse, UserInfo } from '../user';
 })
 export class AdminComponent implements OnInit {
   apiURL:string="http://localhost/practice_test/userfiles/";
+  queryString:'';
   response: UserResponse ={
     message:'',
     type:undefined

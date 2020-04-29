@@ -1,13 +1,15 @@
 
 
   <div class="content" role="main">
+    
     <ng-container *ngIf="response.message; else userResponse">
       <p class="center alert"   [ngClass]="{'alert-danger': !response.type ,'alert-success': response.type}"> {{response.message}}</p>
     </ng-container>
     <ng-template  #userResponse>
+     <div class="login"><input  type="text"  class="serchText" [(ngModel)]="queryString" id="search" placeholder="Search to type"></div>
     <div class="w-75">
     
-    <ng-container *ngFor="let user of uresponse">
+    <ng-container *ngFor="let user of uresponse | filterPipe:queryString">
       <div class="card">
         <div class="card-body">
           <h5 class="card-title">Name: {{user.userName}}</h5>

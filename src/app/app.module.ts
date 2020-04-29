@@ -4,11 +4,12 @@ import {HttpClientModule} from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HomeComponent } from './home/home.component';
-import { ReactiveFormsModule } from '@angular/forms';
+import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { SigninComponent } from './signin/signin.component';
 import { AdminComponent } from './admin/admin.component';
 import { SignupComponent } from './signup/signup.component';
 import { RecaptchaModule, RECAPTCHA_SETTINGS, RecaptchaSettings,RecaptchaFormsModule } from 'ng-recaptcha';
+import { FilterPipe } from './filter.pipe';
 
 
 @NgModule({
@@ -17,7 +18,8 @@ import { RecaptchaModule, RECAPTCHA_SETTINGS, RecaptchaSettings,RecaptchaFormsMo
     HomeComponent,
     SigninComponent,
     AdminComponent,
-    SignupComponent
+    SignupComponent,
+    FilterPipe
   ],
   imports: [
     BrowserModule,
@@ -26,6 +28,7 @@ import { RecaptchaModule, RECAPTCHA_SETTINGS, RecaptchaSettings,RecaptchaFormsMo
     ReactiveFormsModule,
     RecaptchaModule,
     RecaptchaFormsModule,
+    FormsModule
   ],
   providers: [{
     provide: RECAPTCHA_SETTINGS,
