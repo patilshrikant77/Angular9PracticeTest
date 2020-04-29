@@ -1,0 +1,63 @@
+ 
+ <div class="content" role="main">
+      <p class="center alert"  [hidden]="!response.message" [ngClass]="{'alert-danger': !response.type ,'alert-success': response.type}"> {{response.message}}</p>
+     <form class="w-50" [formGroup]="userForm" (ngSubmit)="submitUser()">
+        <div class="form-group">
+            <label for="userName">Name</label>
+            <input type="text" class="form-control" id="userName" placeholder="Name" formControlName="userName">
+            <div *ngIf="isSubmitted && f.userName.errors" class="alert alert-danger">
+                <div *ngIf="f.userName.errors.required">Name is required</div>
+            </div>   
+        </div>
+        <div class="form-group">
+          <label for="userEmail">Email address</label>
+          <input type="email" class="form-control" id="userEmail" aria-describedby="emailHelp" placeholder="Enter email" formControlName="userEmail">
+          <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+          <div *ngIf="isSubmitted && f.userEmail.errors" class="alert alert-danger">
+            <div *ngIf="f.userEmail.errors.required">Email is required</div>
+            <div *ngIf="f.userEmail.errors.email">Email must be a valid email address</div>
+        </div>   
+        </div>
+        <div class="form-group">
+          <label for="webAddress">Web address</label>
+          <input type="text" class="form-control" id="webAddress" placeholder="Web Address" formControlName="userWebAddress" >
+          <div *ngIf="isSubmitted && f.userWebAddress.errors" class="alert alert-danger">
+            <div *ngIf="f.userWebAddress.errors.required">Web address is required</div>
+            <div *ngIf="f.userWebAddress.errors.pattern">Web address must be a valid </div>
+        </div>
+
+        </div>
+        <div class="form-group">
+            <label for="coverLetter">Cover letter</label>
+            <input type="text" class="form-control" id="coverLetter" placeholder="Cover Letter" formControlName="userCoveLetter">
+            <div *ngIf="isSubmitted && f.userCoveLetter.errors" class="alert alert-danger">
+                <div *ngIf="f.userCoveLetter.errors.required">Cover letter is required</div>
+            </div>
+    
+          </div>
+          <div class="form-group">
+            <label for="cvAttachment">Attachment</label>
+            <input type="file" class="form-control-file" id="cvAttachment" (change)="onFileChange($event)" #fileInput   accept="application/pdf" >
+            
+          </div>
+          <div class="form-group">
+            <label class="mr-3">Do you like working?</label>
+          <div class="form-check form-check-inline">
+            <input class="" type="radio" id="yesCheckbox" name="userWorking"  value="yes"  formControlName="userWorking">
+            <label class="form-check-label" for="yesCheckbox">Yes</label>
+          </div>
+          <div class="form-check form-check-inline">
+            <input class="form-check-input" type="radio" id="noCheckbox" name="userWorking" value="no"  formControlName="userWorking" >
+            <label class="form-check-label" for="noCheckbox">No</label>
+          </div>
+          </div>
+
+          <div class="form-group">
+            <re-captcha formControlName="recaptchaReactive"></re-captcha>
+          </div>
+          
+        <button  class="btn btn-primary mr-3" >Submit</button> 
+        <!-- [disabled]="userForm.invalid" -->
+        <button class="btn btn-secondary" type="reset" (click)="onReset()">Reset</button>
+      </form>
+    </div>

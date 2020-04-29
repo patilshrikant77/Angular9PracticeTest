@@ -1,0 +1,38 @@
+<div class="content" role="main">
+    <p class="center alert"  [hidden]="!response.message" [ngClass]="{'alert-danger': !response.type ,'alert-success': response.type}"> {{response.message}}</p>
+   <div class="login">
+  
+      <h2 class="login-header">Sign Up</h2>
+      <form [formGroup]="signupForm" class="login-container" (ngSubmit)="register()">
+    
+        <p [ngClass]="{ 'has-error': isSubmitted && f.email.errors }">
+          <input type="email" placeholder="Email" formControlName="email">
+        </p>
+    
+        <div *ngIf="isSubmitted && f.email.errors" class="alert alert-danger">
+          <div *ngIf="f.email.errors.required">Email is required</div>
+          <div *ngIf="f.email.errors.email">Email must be a valid email address</div>
+        </div>
+    
+        <p [ngClass]="{ 'has-error': isSubmitted && f.password.errors }">
+          <input type="password" placeholder="Password" formControlName="password">
+        </p>
+    
+        <div *ngIf="isSubmitted && f.password.errors" class="alert alert-danger">
+          <div *ngIf="f.password.errors.required">Password is required</div>
+        </div>
+        <p [ngClass]="{ 'has-error': isSubmitted && f.cpassword.errors }">
+            <input type="password" placeholder="Confirm Password" formControlName="cpassword">
+          </p>
+      
+          <div *ngIf="isSubmitted && f.cpassword.errors" class="alert alert-danger">
+            <div *ngIf="f.cpassword.errors.required">Confirm Password is required</div>
+            <div *ngIf="f.cpassword.errors.MatchPassword">Password not Match</div>
+          </div>
+    
+        <p>
+          <input type="submit"   value="Sign Up">
+        </p>
+      </form>
+    </div>
+    </div>

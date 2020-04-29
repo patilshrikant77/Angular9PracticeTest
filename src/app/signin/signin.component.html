@@ -1,0 +1,30 @@
+<div class="content" role="main">
+  <p class="center alert"  [hidden]="!response.message" [ngClass]="{'alert-danger': !response.type ,'alert-success': response.type}"> {{response.message}}</p>
+ <div class="login">
+
+    <h2 class="login-header">Sign in</h2>
+    <form [formGroup]="signinForm" class="login-container" (ngSubmit)="login()">
+  
+      <p [ngClass]="{ 'has-error': isSubmitted && f.email.errors }">
+        <input type="email" placeholder="Email" formControlName="email">
+      </p>
+  
+      <div *ngIf="isSubmitted && f.email.errors" class="alert alert-danger">
+        <div *ngIf="f.email.errors.required">Email is required</div>
+        <div *ngIf="f.email.errors.email">Email must be a valid email address</div>
+      </div>
+  
+      <p [ngClass]="{ 'has-error': isSubmitted && f.password.errors }">
+        <input type="password" placeholder="Password" formControlName="password">
+      </p>
+  
+      <div *ngIf="isSubmitted && f.password.errors" class="alert alert-danger">
+        <div *ngIf="f.password.errors.required">Password is required</div>
+      </div>
+  
+      <p>
+        <input type="submit"  value="Sign in">
+      </p>
+    </form>
+  </div>
+  </div>

@@ -1,0 +1,26 @@
+
+
+  <div class="content" role="main">
+    <ng-container *ngIf="response.message; else userResponse">
+      <p class="center alert"   [ngClass]="{'alert-danger': !response.type ,'alert-success': response.type}"> {{response.message}}</p>
+    </ng-container>
+    <ng-template  #userResponse>
+    <div class="w-75">
+    
+    <ng-container *ngFor="let user of uresponse">
+      <div class="card">
+        <div class="card-body">
+          <h5 class="card-title">Name: {{user.userName}}</h5>
+          <p class="card-text"><strong>Email</strong> : {{user.userEmail}}</p>
+          <p class="card-text"><strong>WebSite</strong> : {{user.userWebAddress}}</p>
+          <p class="card-text"><strong>Cover Letter</strong> : {{user.userCoveLetter}}</p>
+          <p class="card-text"><strong>Attachment</strong> : <a [href]="apiURL+user.userAttacment" target="_blank">{{user.userAttacment}}</a></p>
+          <p class="card-text"><strong>Working</strong> : {{user.userWorking}}</p>
+        </div>
+      </div>
+      <div class="mb-3"></div>
+    </ng-container>
+    </div>
+  </ng-template>
+    </div>
+
